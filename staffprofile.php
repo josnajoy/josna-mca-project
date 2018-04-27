@@ -52,13 +52,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			</div>
 			
 			<div class="clear"></div>
+			
 			<div class="w31-user">
 				<label class="head">gender<span class="w3l-star"> * </span></label>	
-					<select class="form-control"  disabled  name="gender" required="">
-					
+					<select class="form-control" disabled name="gender" required="">
 						<option><?php echo $result['gender']?></option>
 					</select>
 			</div>
+			
 			
 			<div class="w3l-user">
 					<label class="head">Branch<span class="w3l-star"> * </span></label>

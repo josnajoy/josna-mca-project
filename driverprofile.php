@@ -31,7 +31,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<?php
 	include("connection.php");
 	$uid=$_SESSION['uid'];
-	$sql="select name,age,gender,address,phoneno,licenseno,joindate,experience,vehicletype,email,password,confirmpassword from driverreg where uid=$uid;";
+	$sql="select name,age,address,phoneno,licenseno,joindate,experience,vehicletype,vehicleno,preferableroute,email,password,confirmpassword from adminadddriver where uid=$uid;";
 	$r=mysqli_query($con,$sql);
 	$result=mysqli_fetch_assoc($r);
 	?>
@@ -48,12 +48,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<input type="text" value="<?php echo $result['age']?>" disabled name="age" placeholder="" required="">
 			</div>
 			<div class="clear"></div>
-			<div class="w31-user">
-				<label class="head">gender<span class="w3l-star"> * </span></label>	
-					<select class="form-control" disabled name="gender" required="">
-						<option><?php echo $result['gender']?></option>
-					</select>
-			</div>
+			
 			
 			<div class="w3l-right" name="address">
 					<label class="w3l-set2">Address</label>
@@ -86,7 +81,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<label class="head">Vehicle Type<span class="w3l-star"> * </span></label>
 					<input type="text"  value="<?php echo $result['vehicletype']?>" disabled name="vehicletype" placeholder="" required="">
 				</div>
-			
+			<div class="w3l-user">
+					<label class="head">Vehicle No<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['vehicleno']?>" disabled name="vehicleno" placeholder="" required="">
+				</div>
+				<div class="w3l-user">
+					<label class="head">Preferable Route<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['preferableroute']?>" disabled name="preferableroute" placeholder="" required="">
+				</div>
 			
 			<div class="clear"></div>
 			</div>	
@@ -100,11 +102,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			
 			<div class="w3l-user">
 				<label class="head">Password<span class="w3l-star"> * </span></label>
-				<input type="password" value="<?php echo $result['password']?>" disabled name="password" placeholder="" required="">
+				<input type="text" value="<?php echo $result['password']?>" disabled name="password" placeholder="" required="">
 			</div>
 			<div class="w3l-user">
 				<label class="head">Confirm Password<span class="w3l-star"> * </span></label>
-				<input type="password" value="<?php echo $result['confirmpassword']?>" disabled name="confirmpassword" placeholder="" required="">
+				<input type="text" value="<?php echo $result['confirmpassword']?>" disabled name="confirmpassword" placeholder="" required="">
 			</div>
 				
 				<div class="btn">
@@ -139,13 +141,14 @@ if(isset($_POST["submit"]))
 $con=mysqli_connect("localhost","josna","josna123","project");
 $name=$_POST["name"];
 $age=$_POST["age"];
-$gender=$_POST["gender"];
 $address=$_POST["add"];
 $phoneno=$_POST["phoneno"];
 $licenseno=$_POST["licenseno"];
 $joindate=$_POST["joindate"];
 $experience=$_POST["experience"];
 $vehicletype=$_POST["vehicletype"];
+$vehicleno=$_POST["vehicleno"];
+$preferableroute=$_POST["preferableroute"];
 $email=$_POST["email"];
 $password=$_POST["password"];
 $confirmpassword=$_POST["confirmpassword"];

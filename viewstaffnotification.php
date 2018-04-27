@@ -54,8 +54,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse cl-effect-13" id="bs-example-navbar-collapse-1">
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="studhome.html" >Home</a></li>
-							<li><a href="studprofile.php" >Profile</a></li>
+							<li><a href="staffhome.html" >Home</a></li>
+							<li><a href="staffprofile.php" >Profile</a></li>
 							<li><a href="viewbusroute.php" >Bus Route</a></li>
 							<li><a href="fee.php" >Payment</a></li>
 							<li><a href="cancellationrequest.php" >Bus Cancel</a></li>

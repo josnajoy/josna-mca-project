@@ -1,8 +1,6 @@
 <?php
 session_start();
 ?>
-
-
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -12,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Admin Add Route</title>
+<title>Admin Edit Bus Details</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,6 +28,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//fonts-->
 </head>
 <body>
+
+<?php
+	include("connection.php");
+	$id=$_GET['u_id'];
+	$sql="select * from busdetails where uid='$id';";
+	$r=mysqli_query($con,$sql);
+	$result=mysqli_fetch_assoc($r);
+	?>
 <!-- header -->
 		
 	<div class="w3_navigation">
@@ -49,20 +55,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
 							<li class="menu__item menu__item--current"><a href="adminhome.html" class="menu__link">Home</a></li>
-							<li class="dropdown menu__item">
-								<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Profile<b class="caret"></b></a>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="viewstuddetails.php">Student</a></li>
-									<li><a href="viewstaffdetails.php">Staff</a></li>
-									<li><a href="viewdriverdetails.php">Driver</a></li>
+									<li><a href="viewstuddetails.php">View Student Details</a></li>
+									<li><a href="viewstaffdetails.php">View Staff Details</a></li>
+									<li><a href="viewdriverdetails.php">View Driver Details</a></li>
 								</ul>
 							</li>
-							<li class="dropdown menu__item">
-								<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Bus Route<b class="caret"></b></a>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Bus Route <b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="adminroute.php">Add Route</a></li>
-									<li><a href="viewadminroute.php">View Route</a></li>
-							
+								<li><a href="adminroute.php">Add Bus Route</a></li>
+									<li><a href="adminroute.php">View Bus Route</a></li>
+									
+									
 								</ul>
 							</li>
 							
@@ -73,19 +80,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="viewbusdetails.php">View Bus Details</a></li>
 									
 								</ul>
-							</li>
-							<li class="dropdown menu__item">
-								<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Payment<b class="caret"></b></a>
+							</li>												
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Payment <b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
 									<li><a href="icons.html">Paid Fee</a></li>
 									<li><a href="typography.html">Pending Fee</a></li>
 									
 								</ul>
 							</li>
-							<li class="menu__item"><a href="viewmessage.php" class="menu__link">Message</a></li>
-							<li class="menu__item"><a href="contact.html" class="menu__link">Bus Cancel</a></li>
-							<li class="menu__item"><a href="addadminnotif.php" class="menu__link">Notification</a></li>
-							<li class="menu__item"><a href="index.html" class="menu__link">Logout</a></li>
+								<li><a href="viewmessage.php">Message</a></li>						
+							<li><a href="addadminnotif.php">Notification</a></li>
+							
+							<li><a href="index.html">Logout</a></li>
+												
+						</ul>
 						</ul>
 					</nav>
 				</div>
@@ -105,11 +115,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li>
 						<div class="w3layouts-banner-top w3layouts-banner-top2">
 							<div class="page-header">
-        <div class="container">
+							<h1 class="page-title">BUS DETAILS</h1>
+							 
+        <div class="container">			
             <div class="row">
+
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="page-section">
-                        <h1 class="page-title">Bus Route</h1>
+                       
                         
                     </div>
                 </div>
@@ -127,85 +140,123 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--form-stars-here-->
 		<div class="book-form">
 			
-			   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			   
-			<div class="w3ls-field">
-					<label class="head">Route Id<span> * </span></label>
-						<input type="text" name="rid" placeholder="" required="">
-					</div>
-					<br></br>
-					<?php 
-                if(isset($validation['rid'])) { 
-                    echo $validation['rid'];
-                }
-             ?>
-			   					<div class="w3ls-field">
-					<label class="head">Bus No<span> * </span></label>
-						<input type="text" name="busno" placeholder="" required="">
-					</div>
-					<br></br>
-					<?php 
+			  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+			  <div>
+			<div class="w3l-user">
+				<label class="head">Bus No<span class="w3l-star"> * </span></label>
+				<input type="text" value="<?php echo $result['busno']?>" name="busno" placeholder="" required="">
+			</div>
+			</div>
+			<?php 
                 if(isset($validation['busno'])) { 
                     echo $validation['busno'];
-                }
-             ?>
-					<div class="w3ls-field">
-				<label class="head">Route<span> * </span></label>
-				<input type="text" name="route" placeholder="" required=""><br></br>
+                } 
+            ?>
+			<div>
+			<div class="w3l-user">
+				<label class="head">Vehicle Registration No<span class="w3l-star"> * </span></label>
+				<input type="text" value="<?php echo $result['vehicleregno']?>" name="vehicleregno" placeholder="" required="">
 			</div>
-			<br></br>
+			</div>
+			
+			<div class="clear"></div>
+				<?php 
+                if(isset($validation['vehicleregno'])) { 
+                    echo $validation['vehicleregno'];
+                } 
+            ?>	
+			<div class="w3l-user">
+			<label class="head">Bus Type<span class="w3l-star"> * </span></label>
+			<input type="text" value="<?php echo $result['bustype']?>" name="bustype" placeholder="" required="">
+			</div>
 			<?php 
-                if(isset($validation['route'])) { 
-                    echo $validation['route'];
-                }
-             ?>
-					<div class="w3ls-field">
-					<label class="head">PickUp Time<span class="w3l-star"> * </span></label>
-						<input type="text" name="pickuptime" placeholder="" required=""><br></br>
-					</div>
-					<br></br>
-					<?php 
-                if(isset($validation['pickuptime'])) { 
-                    echo $validation['pickuptime'];
-                }
-             ?>
-					<div class="w3ls-field">
-					<label class="head">PickOut Time<span class="w3l-star"> * </span></label>
-						<input type="text" name="pickouttime" placeholder="" required=""><br></br>
-					</div>
-					<br></br>
-					<?php 
-                if(isset($validation['pickouttime'])) { 
-                    echo $validation['pickouttime'];
-                }
-             ?>
-					<div class="w3ls-field">
-					<label class="head">Fee<span class="w3l-star"> * </span></label>
-						<input type="text" name="fee" placeholder="" required=""><br></br>
-					</div>
-					<br></br>
-					<?php 
-                if(isset($validation['fee'])) { 
-                    echo $validation['fee'];
-                }
-             ?>
-			 <div class="w3ls-field">
-					<label class="head">Driver<span class="w3l-star"> * </span></label>
-						<input type="text" name="driver" placeholder="" required=""><br></br>
-					</div>
-					<br></br>
-					<?php 
-                if(isset($validation['driver'])) { 
-                    echo $validation['driver'];
-                }
-             ?>
-					<div class="w3ls-field">
-						  <input type="submit" value="Add" name="addbtn">
-					</div>
-					
-			<div class="clearfix"> </div>
-				</form>
+                if(isset($validation['bustype'])) { 
+                    echo $validation['bustype'];
+                } 
+            ?>
+			<div class="clear"></div>
+			<div class="w3l-details1">
+								
+			<div class="w3l-user">
+					<label class="head">Seats Available<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['seatsavailable']?>" name="seatsavailable" placeholder="" required="">
+				</div>
+			<?php 
+                if(isset($validation['seatsavailable'])) { 
+                    echo $validation['seatsavailable'];
+                } 
+            ?>
+			<div class="w3l-user">
+					<label class="head">Policy No<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['policyno']?>" name="policyno" placeholder="" required="">
+				</div>
+			<?php 
+                if(isset($validation['policyno'])) { 
+                    echo $validation['policyno'];
+                } 
+            ?>
+			<div class="w3l-user">
+					<label class="head">FC No<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['fcno']?>" name="fcno" placeholder="" required="">
+				</div>
+			<?php 
+                if(isset($validation['fcno'])) { 
+                    echo $validation['fcno'];
+                } 
+            ?>
+			<div class="clear"></div>
+			<div class="w3l-lef1">
+				
+			<div class="w3l-date">
+					<label class="head">FC Date<span class="w3l-star"> * </span></label>
+						<div class="styled-input">
+							<input class="date" id="datepicker" value="<?php echo $result['fcdate']?>" name="fcdate" type="date" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+						</div>
+					</div>	
+			<?php 
+                if(isset($validation['fcdate'])) { 
+                    echo $validation['fcdate'];
+                } 
+            ?>
+			<div class="w3l-date">
+					<label class="head">FC Due Date<span class="w3l-star"> * </span></label>
+						<div class="styled-input">
+							<input class="date" id="datepicker" value="<?php echo $result['fcduedate']?>" name="fcduedate" type="date" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+						</div>
+					</div>	
+			<?php 
+                if(isset($validation['fcduedate'])) { 
+                    echo $validation['fcduedate'];
+                } 
+            ?>
+			<div class="w3l-date">
+					<label class="head">Insurance Date<span class="w3l-star"> * </span></label>
+						<div class="styled-input">
+							<input class="date" id="datepicker" value="<?php echo $result['insurancedate']?>" name="insurancedate" type="date" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+						</div>
+			</div>	
+			<?php 
+                if(isset($validation['insurancedate'])) { 
+                    echo $validation['insurancedate'];
+                } 
+            ?>
+			<div class="clear"></div>
+			</div>	
+			<div class="w3l-rem">
+			
+			
+			<div class="clear"></div>
+				
+				<div class="btn">
+					&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 
+					&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 
+					&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 
+					<input type="submit" name="submit" value="Submit"/>
+				</div>
 			</div>
+			<div class="clear"></div>
+		</form>
+		</div>
 
 <!--//form-ends-here-->
 <div class="clear"></div>
@@ -215,74 +266,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //banner --> 
 <!--//Header-->
 <!-- /services --> 
-<div class="services" id="services">
-	<div class="container">
-		<div class="w3-heading-all">
-		<h3>Services</h3>
-	   </div>
+
 		
-		<div class="col-md-4 w3-services-right">
-		<div class="w3-services-right w3-services-align">
-		      <div class="col-md-3 w3-services-right1 services-icons">
-					<i class="fa fa-home" aria-hidden="true"></i>
-		     </div>
-			 <div class="col-md-9 w3-services-right2">
-					<h3>Comfortable</h3>
-		
-		     </div>
-			 <div class="clearfix"></div>
-			 </div>
-			 <div class="w3-services-right w3-services-align">
-			 		      <div class="col-md-3 w3-services-right1 services-icons">
-					 <i class="fa fa-table" aria-hidden="true"></i>
-		     </div>
-			 <div class="col-md-9 w3-services-right2">
-			 <h3>Enjoy</h3>
-		     </div>
-			 <div class="clearfix"></div>
-			 </div>
-			 			 <div class="w3-services-right w3-services-align">
-			 		       <div class="col-md-3 w3-services-right1 services-icons">
-					<i class="fa fa-jpy" aria-hidden="true"></i>
-		     </div>
-			 <div class="col-md-9 w3-services-right2">
-		             <h3>Music</h3>
-		     </div>
-			 <div class="clearfix"></div>
-			  </div>
-		</div>
-		<div class="col-md-4 w3-services-middle">
-				<img src="images/abj.png" alt="img1">
-		</div>
 		<div class="col-md-4 w3-services-left">
 		<div class="w3-services-right w3-services-align">
-		     <div class="col-md-3 w3-services-left1 services-icons">
-			     <i class="fa fa-user" aria-hidden="true"></i>
+		     <div>			     <i class="fa fa-user" aria-hidden="true"></i>
 		
 		     </div>
-			 <div class="col-md-9 w3-services-left2">
-		          <h3>Education</h3>
-		     </div>
+			 
 			 <div class="clearfix"></div>
 			 </div>
 			 <div class="w3-services-right w3-services-align">
-			   <div class="col-md-3 w3-services-left1 services-icons">
+			   <div>
 				<i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>
 		     
 		     </div>
-			 <div class="col-md-9 w3-services-left2">
-				<h3>Happy Journey</h3>
-		     </div>
+			 
 			 <div class="clearfix"></div>
 			 </div>
 			  <div class="w3-services-right w3-services-align">
-			    <div class="col-md-3 w3-services-left3 services-icons">
+			    <div>
 			     <i class="fa fa-user" aria-hidden="true"></i>
 		
 		     </div>
-			 <div class="col-md-9 w3-services-left3 ">
-		          <h3> Satisfy </h3>
-		     </div>
+			 
 			 <div class="clearfix"></div>
 			 </div>
 			 
@@ -293,8 +300,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //services --> 
 
-
-	
 
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min5.js"></script>
@@ -361,33 +366,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-<?php
-if(isset($_POST["addbtn"]))
+ <?php
+ if(isset($_POST["submit"]))
 {
 $con=mysqli_connect("localhost","josna","josna123","project");
-$rid=$_POST["rid"];
+//$uid=$_GET['u_id'];
 $busno=$_POST["busno"];
-$route=$_POST["route"];
-$pickuptime=$_POST["pickuptime"];
-$pickouttime=$_POST["pickouttime"];
-$fee=$_POST["fee"];
-
-$sql="insert into route(rid,busno,route,pickuptime,pickouttime,fee,curdate) values ('$rid','$busno','$route','$pickuptime','$pickouttime','$fee',NOW());";
+$vehicleregno=$_POST["vehicleregno"];
+$bustype=$_POST["bustype"];
+$seatsavailable=$_POST["seatsavailable"];
+$policyno=$_POST["policyno"];
+$fcno=$_POST["fcno"];
+$fcdate=$_POST["fcdate"];
+$fcduedate=$_POST["fcduedate"];
+$insurancedate=$_POST["insurancedate"];
+				
+$sql="update busdetails set busno='$busno',vehicleregno='$vehicleregno',bustype='$bustype',seatsavailable='$seatsavailable',policyno='$policyno',fcno='$fcno',fcdate='$fcdate',fcduedate='$fcduedate',insurancedate='$insurancedate',curdate=NOW() where uid='$uid';";
 //echo $sql;
 mysqli_query($con,$sql);
 //$_SESSION['email'] = $_POST['email']; 
-//header('location:adminhome.html'); 
+//header('location:index.html');
+
 $URL="http://localhost/collegetransportation/adminhome.html";
 echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
 echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
 
-$p="insert into routepay(rid,route,curdate) values ('$rid','$route',NOW());";
-mysqli_query($con,$p);
-echo $p;
+
 header('Location: http://www.google.com/');
 exit;
 }
-
 ?> 
+	
 </body>
 </html>

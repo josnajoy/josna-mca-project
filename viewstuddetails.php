@@ -1,10 +1,17 @@
-
+<html>
+<style>
+body{
+	background-image:url("images/b1.png");
+	background-size:1500px,1500px;
+}
+</style>
+</html>
 
 <?php
 
 include("connection.php");
 $s=mysqli_query($con,"select * from studreg");
-echo "<table border ='0.2' cellspacing=1 width=90% height=90% align='center' style=margin:90px; bgcolor=#f7aa>
+echo "<table border ='0.2' cellspacing=1 width=90% height=90% align='center' style=margin:90px;>
 <tr><colspan=12><font size=10 color=black >Student Details</font></th></tr>
 <tr><th>Id</th><th>First Name</th><th>Last Name</th><th>Id</th><th>Gender</th><th>Dob</th><th>Address</th><th>Phone No</th><th>
 Branch</th><th>Semester</th><th>Year</th><th>Route</th><th>Stoppage</th></tr>";

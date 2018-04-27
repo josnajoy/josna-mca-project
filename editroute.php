@@ -29,6 +29,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//fonts-->
 </head>
 <body>
+
+
+<?php
+	include("connection.php");
+	$id=$_GET['r_id'];
+	$sql="select * from route where rid='$id';";
+	$r=mysqli_query($con,$sql);
+	$result=mysqli_fetch_assoc($r);
+	?>
 <!-- header -->
 		
 	<div class="w3_navigation">
@@ -76,13 +85,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="dropdown menu__item">
 								<a href="#" class="dropdown-toggle menu__link" data-toggle="dropdown">Payment<b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="icons.html">Paid Fee</a></li>
-									<li><a href="typography.html">Pending Fee</a></li>
+									<li><a href="paidfee.php">Paid Fee</a></li>
+									<li><a href="pendingfee.php">Pending Fee</a></li>
 									
 								</ul>
 							</li>
-							<li class="menu__item"><a href="contact.html" class="menu__link">Bus Cancel</a></li>
-							<li class="menu__item"><a href="notification.html" class="menu__link">Notification</a></li>
+							<li class="menu__item"><a href="viewmessage.php" class="menu__link">Message</a></li>
+							<li class="menu__item"><a href="viewcancelrequest.php" class="menu__link">Bus Cancel</a></li>
+							<li class="menu__item"><a href="addadminnotif.php" class="menu__link">Notification</a></li>
 							<li class="menu__item"><a href="index.html" class="menu__link">Logout</a></li>
 						</ul>
 					</nav>
@@ -124,24 +134,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="main-agileits">
 <!--form-stars-here-->
 		<div class="book-form">
-	<?php
-	include("connection.php");
-	$rid=$_SESSION['rid'];
-	$sql="select busno,pickuparea,pickuptime,pickouttime,fee from route where rid=$rid;";
-	$r=mysqli_query($con,$sql);
-	$result=mysqli_fetch_assoc($r);
-	?>
-			   <form method="post">
+	
+			   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			   
-			
+			<div class="w3ls-field">
+					<label class="head">Route Id<span> * </span></label>
+						<input type="text" value="<?php echo $result['rid']?>" name="rid" placeholder="" required="">
+					</div>
+					<br></br>
 			   					<div class="w3ls-field">
 					<label class="head">Bus No<span> * </span></label>
 						<input type="text" value="<?php echo $result['busno']?>" name="busno" placeholder="" required="">
 					</div>
 					<br></br>
 					<div class="w3ls-field">
-				<label class="head">PickUp Area<span> * </span></label>
-				<input type="text" value="<?php echo $result['pickuparea']?>" name="pickuparea" placeholder="" required=""><br></br>
+				<label class="head">Route<span> * </span></label>
+				<input type="text" value="<?php echo $result['route']?>" name="route" placeholder="" required=""><br></br>
 			</div>
 			<br></br>
 					<div class="w3ls-field">
@@ -159,10 +167,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" value="<?php echo $result['fee']?>" name="fee" placeholder="" required=""><br></br>
 					</div>
 					<br></br>
+					<div class="w3ls-field">
+					<label class="head">Driver<span class="w3l-star"> * </span></label>
+						<input type="text" value="<?php echo $result['driver']?>" name="fee" placeholder="" required=""><br></br>
+					</div>
+					<br></br>
 					
 					
 					<div class="w3ls-field">
-						  <input type="submit" value="Save" name="savebtn">
+						  <input type="submit" value="Submit" name="submit">
 					</div>
 					
 			<div class="clearfix"> </div>
@@ -322,28 +335,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-
-
 <?php
-if(isset($_POST["savebtn"]))
+if(isset($_POST["submit"]))
 {
 $con=mysqli_connect("localhost","josna","josna123","project");
+$rid=$_POST["rid"];
+//$rid=$_GET["r_id"];
 $busno=$_POST["busno"];
-$pickuparea=$_POST["pickuparea"];
+$route=$_POST["route"];
 $pickuptime=$_POST["pickuptime"];
 $pickouttime=$_POST["pickouttime"];
 $fee=$_POST["fee"];
 
-$sql="update route set `busno`='$busno',	`pickuparea`='$pickuparea',	`pickuptime`='$pickuptime,	`pickouttime`='$pickouttime,	`fee`='$fee',	`curdate`=NOW() where rid=$rid;";
-
+$sql="update route set rid='$rid', busno='$busno',route='$route', pickuptime='$pickuptime' , pickouttime='$pickouttime' , fee='$fee' , curdate=NOW() where rid='$rid';";
+//echo $sql;
 mysqli_query($con,$sql);
-header('location:adminhome.html'); 
+//$_SESSION['email'] = $_POST['email']; 
+//header('location:index.html');
+
+$URL="http://localhost/collegetransportation/adminhome.html";
+echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+
+
+header('Location: http://www.google.com/');
+exit;
 }
 ?> 
+	
 </body>
 </html>
-
-
 
 
 

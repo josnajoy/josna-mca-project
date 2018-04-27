@@ -1,0 +1,6 @@
+onclick=window.location.href='payment.php?x=<?php $route?> && y=<?php $amount?> 
+
+<?php
+						$route="<script>document.getElementById('categoriesSelect').value</script";
+						$amount="<script>document.getElementById('subcatsSelect').value</script";
+						?>

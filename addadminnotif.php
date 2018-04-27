@@ -69,6 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									
 								</ul>
 							</li>
+							<li class="menu__item"><a href="viewmessage.php" class="menu__link">Message</a></li>
 							<li class="menu__item"><a href="contact.html" class="menu__link">Bus Cancel</a></li>
 							<li class="menu__item"><a href="addadminnotif.php" class="menu__link">Notification</a></li>
 							<li class="menu__item"><a href="index.html" class="menu__link">Logout</a></li>
@@ -113,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--form-stars-here-->
 		<div class="book-form">
 			
-			   <form action="" method="post" class="w3_form_post">
+			   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                        
 						<div class="w3_agileits_main_grid w3l_main_grid">
 							<span class="agileits_grid">
@@ -290,15 +291,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-  <?php
+  
+ <?php
+if(isset($_POST["submit"]))
+{
 $con=mysqli_connect("localhost","josna","josna123","project");
- $notification=$_POST["notification"];
+$notification=$_POST["notification"];
 $admin="admin";
 $sql="insert into notification(notification,category,curdate)values('$notification','$admin',NOW());";
 mysqli_query($con,$sql);
-			
-?>		
+//$_SESSION['email'] = $_POST['email']; 
+//header('location:adminhome.html'); 
+$URL="http://localhost/collegetransportation/adminhome.html";
+echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
 
+
+header('Location: http://www.google.com/');
+exit;
+}
+?> 
 
 
 	

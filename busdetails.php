@@ -56,8 +56,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Add Bus Route <b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Bus Route <b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
+								<li><a href="adminroute.php">Add Bus Route</a></li>
 									<li><a href="adminroute.php">View Bus Route</a></li>
 									
 									
@@ -71,9 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="viewbusdetails.php">View Bus Details</a></li>
 									
 								</ul>
-							</li>
-							
-							
+							</li>												
 							
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Payment <b class="caret"></b></a>
@@ -83,12 +82,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									
 								</ul>
 							</li>
-														
+								<li><a href="viewmessage.php">Message</a></li>						
 							<li><a href="addadminnotif.php">Notification</a></li>
 							
-							<li><a href="contact.html">Logout</a></li>
-							
-							
+							<li><a href="index.html">Logout</a></li>
+												
 						</ul>
 						</ul>
 					</nav>
@@ -106,9 +104,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="rslides callbacks callbacks1" id="slider4">
 					
 					
-					<li><h1 class="page-title">BUS DETAILS</h1>
+					<li>
 						<div class="w3layouts-banner-top w3layouts-banner-top2">
 							<div class="page-header">
+							<h1 class="page-title">BUS DETAILS</h1>
 							 
         <div class="container">			
             <div class="row">
@@ -133,81 +132,117 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--form-stars-here-->
 		<div class="book-form">
 			
-			  <form method="post">	
+			  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+			  <div>
 			<div class="w3l-user">
 				<label class="head">Bus No<span class="w3l-star"> * </span></label>
 				<input type="text" name="busno" placeholder="" required="">
 			</div>
+			</div>
+			<?php 
+                if(isset($validation['busno'])) { 
+                    echo $validation['busno'];
+                } 
+            ?>
+			<div>
 			<div class="w3l-user">
 				<label class="head">Vehicle Registration No<span class="w3l-star"> * </span></label>
 				<input type="text" name="vehicleregno" placeholder="" required="">
 			</div>
-			<div class="w3l-user">
-				<label class="head">Bus Name<span class="w3l-star"> * </span></label>
-				<input type="text" name="busname" placeholder="" required="">
 			</div>
+			
 			<div class="clear"></div>
-			
-			
-				<div class="w3l-user">
-				<label class="head">Bus Type<span class="w3l-star"> * </span></label>
-				<input type="text" name="bustype" placeholder="" required="">
+				<?php 
+                if(isset($validation['vehicleregno'])) { 
+                    echo $validation['vehicleregno'];
+                } 
+            ?>	
+			<div class="w3l-user">
+			<label class="head">Bus Type<span class="w3l-star"> * </span></label>
+			<input type="text" name="bustype" placeholder="" required="">
 			</div>
-			
+			<?php 
+                if(isset($validation['bustype'])) { 
+                    echo $validation['bustype'];
+                } 
+            ?>
 			<div class="clear"></div>
 			<div class="w3l-details1">
-				
-				
+								
 			<div class="w3l-user">
 					<label class="head">Seats Available<span class="w3l-star"> * </span></label>
 					<input type="text"  name="seatsavailable" placeholder="" required="">
 				</div>
-			
+			<?php 
+                if(isset($validation['seatsavailable'])) { 
+                    echo $validation['seatsavailable'];
+                } 
+            ?>
 			<div class="w3l-user">
 					<label class="head">Policy No<span class="w3l-star"> * </span></label>
 					<input type="text"  name="policyno" placeholder="" required="">
 				</div>
-			
+			<?php 
+                if(isset($validation['policyno'])) { 
+                    echo $validation['policyno'];
+                } 
+            ?>
 			<div class="w3l-user">
 					<label class="head">FC No<span class="w3l-star"> * </span></label>
 					<input type="text"  name="fcno" placeholder="" required="">
 				</div>
-			
+			<?php 
+                if(isset($validation['fcno'])) { 
+                    echo $validation['fcno'];
+                } 
+            ?>
 			<div class="clear"></div>
 			<div class="w3l-lef1">
 				
 			<div class="w3l-user">
 					<label class="head">FC Date<span class="w3l-star"> * </span></label>
 						<div class="styled-input">
-							<input class="date" id="datepicker" name="fcdate" type="text" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+							<input class="date" id="datepicker" name="fcdate" type="date" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
 						</div>
 					</div>	
-			
+			<?php 
+                if(isset($validation['fcdate'])) { 
+                    echo $validation['fcdate'];
+                } 
+            ?>
 			<div class="w3l-user">
 					<label class="head">FC Due Date<span class="w3l-star"> * </span></label>
 						<div class="styled-input">
-							<input class="date" id="datepicker" name="fcduedate" type="text" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+							<input class="date" id="datepicker" name="fcduedate" type="date" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
 						</div>
 					</div>	
-			
-			<div class="w3l-user">
+			<?php 
+                if(isset($validation['fcduedate'])) { 
+                    echo $validation['fcduedate'];
+                } 
+            ?>
+			<div class="w3l-date">
 					<label class="head">Insurance Date<span class="w3l-star"> * </span></label>
 						<div class="styled-input">
-							<input class="date" id="datepicker" name="insurancedate" type="text" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+							<input class="date" id="datepicker" name="insurancedate" type="date" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
 						</div>
-					</div>	
-			
-			
+			</div>	
+			<?php 
+                if(isset($validation['insurancedate'])) { 
+                    echo $validation['insurancedate'];
+                } 
+            ?>
 			<div class="clear"></div>
 			</div>	
 			<div class="w3l-rem">
 			
 			
 			<div class="clear"></div>
-			
-			
 				
 				<div class="btn">
+					&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 
+					&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 
+					&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp 
 					<input type="submit" name="submit" value="Submit"/>
 				</div>
 			</div>
@@ -257,8 +292,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //services --> 
 
-
-	
 
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min5.js"></script>
@@ -331,7 +364,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 $con=mysqli_connect("localhost","josna","josna123","project");
 $busno=$_POST["busno"];
 $vehicleregno=$_POST["vehicleregno"];
-$busname=$_POST["busname"];
 $bustype=$_POST["bustype"];
 $seatsavailable=$_POST["seatsavailable"];
 $policyno=$_POST["policyno"];
@@ -340,19 +372,22 @@ $fcdate=$_POST["fcdate"];
 $fcduedate=$_POST["fcduedate"];
 $insurancedate=$_POST["insurancedate"];
 				
-$sql="insert into busdetails(busno,vehicleregno,busname,bustype,seatsavailable,policyno,fcno,fcdate,fcduedate,insurancedate)values('$busno','$vehicleregno','$busname','$bustype','$seatsavailable','$policyno','$fcno','$fcdate','$fcduedate','$insurancedate')";
+$sql="insert into busdetails(busno,vehicleregno,bustype,seatsavailable,policyno,fcno,fcdate,fcduedate,insurancedate,curdate)values('$busno','$vehicleregno','$bustype','$seatsavailable','$policyno','$fcno','$fcdate','$fcduedate','$insurancedate',NOW());";
+
 //echo $sql;
-//mysqli_query($con,$sql);
+mysqli_query($con,$sql);
 //$_SESSION['email'] = $_POST['email']; 
+//header('location:index.html');
+
 $URL="http://localhost/collegetransportation/adminhome.html";
 echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
 echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
 
-
+echo "Successfully insered";
 header('Location: http://www.google.com/');
 exit;
-}		
-?>		
+}
+?> 
 	
 </body>
 </html>

@@ -1,8 +1,17 @@
+<html>
+<style>
+body{
+	background-image:url("images/b1.png");
+	background-size:1500px,1500px;
+}
+</style>
+</html>
+
 <?php
 
 include("connection.php");
 $s=mysqli_query($con,"select * from driverreg");
-echo "<table border ='0.3' cellspacing=3 width=90% height=90% align='center' style=margin:90px; bgcolor=#f7aa77>
+echo "<table border ='0.3' cellspacing=3 width=90% height=90% align='center' style=margin:90px;>
 <tr><colspan=12><font size=10 color=black >Driver Details</font></th></tr>
 <tr><th>Id</th><th>Name</th><th>Age</th><th>Gender</th><th>Address</th><th>Phone No</th><th>
 License No</th><th>Join Date</th><th>Experience</th><th>Vehicle Type</th></tr>";
@@ -21,4 +30,5 @@ License No</th><th>Join Date</th><th>Experience</th><th>Vehicle Type</th></tr>";
    }
  echo"</table>"
   ?>
- 
+ </body>
+ </html>

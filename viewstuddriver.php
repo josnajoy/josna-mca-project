@@ -1,3 +1,13 @@
+<html>
+<style>
+body{
+	background-image:url("images/b1.jpg");
+	background-size:1500px,1500px;
+}
+</style>
+</html>
+
+
 <?php
 
 include("connection.php");

@@ -51,14 +51,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                 } 
             ?>
 			<div class="clear"></div>
-			<div class="w31-user">
+			<!--<div class="w31-user">
 				<label class="head">Gender<span class="w3l-star"> * </span></label>	
 					<select class="form-control" name="gender" required="">
 						<option>--Select--</option>
 						<option>Male</option>
 						<option>Female</option>
 						</select>
-			</div>
+			</div>-->
 			<?php 
                 if(isset($validation['gender'])) { 
                     echo $validation['gender'];
@@ -121,6 +121,26 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             ?>
 			<div class="clear"></div>
 			</div>	
+			<div class="w3l-user">
+					<label class="head">Vehicle No<span class="w3l-star"> * </span></label>
+					<input type="text"  name="vehicleno" placeholder="" required="">
+				</div>
+			
+			<?php 
+                if(isset($validation['vehicleno'])) { 
+                    echo $validation['vehicleno'];
+                } 
+            ?>
+			<div class="w3l-user">
+					<label class="head">Preferable Route<span class="w3l-star"> * </span></label>
+					<input type="text"  name="preferableroute" placeholder="" required="">
+				</div>
+			
+			<?php 
+                if(isset($validation['preferableroute'])) { 
+                    echo $validation['preferableroute'];
+                } 
+            ?>
 			<div class="w3l-rem">
 			
 			<div class="w3l-mail">
@@ -183,24 +203,25 @@ if(isset($_POST["submit"]))
 $con=mysqli_connect("localhost","josna","josna123","project");
 $name=$_POST["name"];
 $age=$_POST["age"];
-$gender=$_POST["gender"];
 $address=$_POST["add"];
 $phoneno=$_POST["phoneno"];
 $licenseno=$_POST["licenseno"];
 $joindate=$_POST["joindate"];
 $experience=$_POST["experience"];
 $vehicletype=$_POST["vehicletype"];
+$vehicleno=$_POST["vehicleno"];
+$preferableroute=$_POST["preferableroute"];
 $email=$_POST["email"];
 $password=$_POST["password"];
 $confirmpassword=$_POST["confirmpassword"];
 
-$sql="insert into driverreg(name,age,gender,address,phoneno,licenseno,joindate,experience,vehicletype,email,password,confirmpassword,curdate) values ('$name','$age','$gender','$address','$phoneno','$licenseno','$joindate','$experience','$vehicletype','$email','$password','$confirmpassword',NOW());";
+$sql="insert into adminadddriver(name,age,address,phoneno,licenseno,joindate,experience,vehicletype,vehicleno,preferableroute,email,password,confirmpassword,curdate) values ('$name','$age','$address','$phoneno','$licenseno','$joindate','$experience','$vehicletype','$vehicleno','$preferableroute','$email','$password','$confirmpassword',NOW());";
 //echo $sql;
 mysqli_query($con,$sql);
 //$_SESSION['email'] = $_POST['email']; 
 //header('location:index.html');
 echo "Successfully registered";
-$URL="http://localhost/collegetransportation/index.html";
+$URL="http://localhost/collegetransportation/adminhome.html";
 echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
 echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
 

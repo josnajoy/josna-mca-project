@@ -31,7 +31,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<?php
 	include("connection.php");
 	$uid=$_SESSION['uid'];
-	$sql="select id,name,gender,category,branch,route,stoppage from message where uid=$uid;";
+	$sql="select id,name,gender,category,branch,route,stoppage from studreg where uid=$uid;";
 	$r=mysqli_query($con,$sql);
 	$result=mysqli_fetch_assoc($r);
 	?>
@@ -44,58 +44,115 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<textarea name="message"></textarea>
 				</div>
 <div class="w3l-user">
-
+<?php 
+                if(isset($validation['message'])) { 
+                    echo $validation['message'];
+                }
+                ?>
 
 				<label class="head">Id<span class="w3l-star"> * </span></label>
 				<input type="text" value="<?php echo $result['id']?>" name="id" placeholder="" required="">
 			</div>
-	
+	<?php 
+                if(isset($validation['id'])) { 
+                    echo $validation['id'];
+                }
+                ?>
 			<div class="w3l-user">
 				<label class="head">Name<span class="w3l-star"> * </span></label>
 				<input type="text" value="<?php echo $result['name']?>" name="name" placeholder="" required="">
 			</div>
 				
-			
+			<?php 
+                if(isset($validation['name'])) { 
+                    echo $validation['name'];
+                }
+                ?>
 			
 		
 			<div class="w3l-user">
 				<label class="head">Gender<span class="w3l-star"> * </span></label>	
 					<select class="form-control" name="gender" placeholder="" required="">
 						
-						<option><?php echo $result['gender']?></option>
+						<option>select</option>
+							<option>Male</option>
+								<option>Female</option>
 					</select>
 			</div>
 			
-				
+				<?php 
+                if(isset($validation['gender'])) { 
+                    echo $validation['gender'];
+                }
+                ?>
 			<div class="w3l-user">
 				<label class="head">Category<span class="w3l-star"> * </span></label>	
 					<select class="form-control" name="category" placeholder="" required="">
-						
-						<option><?php echo $result['category']?></option>
+		    			<option>select</option>
+						<option>student</option>
+						<option>staff</option>
 					</select>
 			</div>
 			
-			
+			<?php 
+                if(isset($validation['category'])) { 
+                    echo $validation['category'];
+                }
+                ?>
 			<div class="w3l-user">
 					<label class="head">Branch<span class="w3l-star"> * </span></label>
 					<input type="text"  value="<?php echo $result['branch']?>" name="branch" placeholder="" required="">
 				</div>	
 						
-			
+			<?php 
+                if(isset($validation['branch'])) { 
+                    echo $validation['branch'];
+                }
+                ?>
 			
 			<div class="clear"></div>
 			<div class="w3l-lef1">
 				
-			<div class="w3l-user">
-				<label class="head">Route<span class="w3l-star"> * </span></label>
-				<input type="text" value="<?php echo $result['route']?>" name="route" placeholder="" required="">
+			<div class="clear"></div>
+			<div class="w31-user">
+				<label class="head">Route<span class="w3l-star"> * </span></label>	
+					<select class="form-control" name="route" required="">
+						<option>--Select--</option>
+						<option>M c Road</option>
+						<option>t nagar</option>
+						<option>gandhinagar</option>
+						<option>kottayam</option>
+						<option>kidangoor</option>
+						<option>koothattkulam</option>
+						<option>ll hospital</option>
+						<option>T B Junction</option>
+					</select>
 			</div>
-			
-			<div class="w3l-user">
-				<label class="head">Stoppage<span class="w3l-star"> * </span></label>
-				<input type="text" value="<?php echo $result['stoppage']?>" name="stoppage" placeholder="" required="">
+			<?php 
+                if(isset($validation['route'])) { 
+                    echo $validation['route'];
+                }
+                ?>
+			<div class="clear"></div>
+			<div class="w31-user">
+				<label class="head">Stoppage<span class="w3l-star"> * </span></label>	
+					<select class="form-control" name="stoppage" required="">
+						<option>--Select--</option>
+						<option>palai</option>
+						<option>vidya coloney</option>
+						<option>ll hospital jun</option>
+						<option>high court</option>
+						<option>kidangoor jun</option>
+						<option>t nagar coloney</option>
+						<option>koothattkulam church road</option>
+						<option>T B Junction</option>
+					</select>
 			</div>
-			
+				<?php 
+                if(isset($validation['stoppage'])) { 
+                    echo $validation['stoppage'];
+                }
+                ?>
 			
 					
 			
@@ -129,11 +186,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		});
 	</script>
 <!-- //Calendar -->
-
-
-
-
-
 
 </body>
 </html>

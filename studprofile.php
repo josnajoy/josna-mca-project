@@ -51,22 +51,22 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<input type="text" value="<?php echo $result['id']?>" disabled name="id" placeholder="" required="">
 			</div>
 			<div class="clear"></div>
-			<div class="gender">
+			<div class="w31-user">
 				<label class="head">gender<span class="w3l-star"> * </span></label>	
-					<select class="form-control"  disabled name="gender" required="">
-						
+					<select class="form-control" disabled name="gender" required="">
 						<option><?php echo $result['gender']?></option>
 					</select>
 			</div>
+			
 			<div class="w3l-date">
 					<label class="head">Birth Date<span class="w3l-star"> * </span></label>
 						<div class="styled-input">
 							<input class="date" id="datepicker" value="<?php echo $result['birthdate']?>" disabled name="birthdate" type="text" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
 						</div>
 					</div>	
-			<div class="w3l-right" disabled name="address">
+			<div class="w3l-right" name="address">
 					<label class="w3l-set2">Address</label>
-					<textarea name="add" ><?php echo $result['address'] ?></textarea>
+					<textarea name="add" disabled><?php echo $result['address'] ?></textarea>
 				</div>	
 				<div class="w3l-user">
 				<label class="head">Phone No<span class="w3l-star"> * </span></label>
@@ -119,11 +119,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			
 			<div class="w3l-user">
 				<label class="head">Password<span class="w3l-star"> * </span></label>
-				<input type="password" value="<?php echo $result['password']?>" disabled name="password" placeholder="" required="">
+				<input type="text" value="<?php echo $result['password']?>" disabled name="password" placeholder="" required="">
 			</div>
 			<div class="w3l-user">
 				<label class="head">Confirm Password<span class="w3l-star"> * </span></label>
-				<input type="password" value="<?php echo $result['confirmpassword']?>" disabled name="confirmpassword" placeholder="" required="">
+				<input type="text" value="<?php echo $result['confirmpassword']?>" disabled name="confirmpassword" placeholder="" required="">
 			</div>
 				
 				<div class="btn">

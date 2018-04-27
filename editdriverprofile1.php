@@ -31,7 +31,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<?php
 	include("connection.php");
 	$uid=$_SESSION['uid'];
-	$sql="select name,age,gender,address,phoneno,licenseno,joindate,experience,vehicletype,email,password,confirmpassword from driverreg where uid=$uid;";
+	$sql="select name,age,address,phoneno,licenseno,joindate,experience,vehicletype,vehicleno,preferableroute,email,password,confirmpassword from adminadddriver where uid=$uid;";
 	$r=mysqli_query($con,$sql);
 	$result=mysqli_fetch_assoc($r);
 	?>
@@ -43,33 +43,50 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<label class="head">Name<span class="w3l-star"> * </span></label>
 				<input type="text" value="<?php echo $result['name']?>" name="name" placeholder="" required="">
 			</div>
+			<?php 
+                if(isset($validation['name'])) { 
+                    echo $validation['name'];
+                }
+             ?>
 			<div class="w3l-user">
 				<label class="head">Age<span class="w3l-star"> * </span></label>
 				<input type="text" value="<?php echo $result['age']?>" name="age" placeholder="" required="">
 			</div>
+			<?php 
+                if(isset($validation['age'])) { 
+                    echo $validation['age'];
+                }
+             ?>
 			<div class="clear"></div>
-			<div class="w31-user">
-				<label class="head">gender<span class="w3l-star"> * </span></label>	
-					<select class="form-control" value="<?php echo $result['gender']?>" name="gender" required="">
-						<option>Gender</option>
-						<option>Male</option>
-						<option>Female</option>
-					</select>
-			</div>
+			
 			
 			<div class="w3l-right" name="address">
 					<label class="w3l-set2">Address</label>
 					<textarea  name="add"><?php echo $result['address']?></textarea>
 				</div>	
+				<?php 
+                if(isset($validation['address'])) { 
+                    echo $validation['address'];
+                }
+             ?>
 				<div class="w3l-user">
 				<label class="head">Phone No<span class="w3l-star"> * </span></label>
 				<input type="text" value="<?php echo $result['phoneno']?>" name="phoneno" placeholder="" required="">
 			</div>
+			<?php 
+                if(isset($validation['phoneno'])) { 
+                    echo $validation['phoneno'];
+                }
+             ?>
 			<div class="w3l-user">
 				<label class="head">License No<span class="w3l-star"> * </span></label>
 				<input type="text" value="<?php echo $result['licenseno']?>" name="licenseno" placeholder="" required="">
 			</div>
-			
+			<?php 
+                if(isset($validation['licenseno'])) { 
+                    echo $validation['licenseno'];
+                }
+             ?>
 			
 			<div class="w3l-details1">
 				
@@ -79,16 +96,49 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<input class="date" id="datepicker" value="<?php echo $result['joindate']?>" name="joindate" type="text" value="MM/DD/YYYY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
 						</div>
 					</div>	
+					<?php 
+                if(isset($validation['joindate'])) { 
+                    echo $validation['joindate'];
+                }
+             ?>
 			<div class="w3l-user">
 					<label class="head">Experience<span class="w3l-star"> * </span></label>
 					<input type="text"  value="<?php echo $result['experience']?>" name="experience" placeholder="" required="">
 				</div>
-			
+			<?php 
+                if(isset($validation['experience'])) { 
+                    echo $validation['experience'];
+                }
+             ?>
 			<div class="w3l-user">
 					<label class="head">Vehicle Type<span class="w3l-star"> * </span></label>
 					<input type="text"  value="<?php echo $result['vehicletype']?>" name="vehicletype" placeholder="" required="">
 				</div>
+			<?php 
+                if(isset($validation['vehicletype'])) { 
+                    echo $validation['vehicletype'];
+                }
+             ?>
 			
+			<div class="w3l-user">
+					<label class="head">Vehicle No<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['vehicleno']?>" name="vehicleno" placeholder="" required="">
+				</div>
+			<?php 
+                if(isset($validation['vehicleno'])) { 
+                    echo $validation['vehicleno'];
+                }
+             ?>
+			
+			<div class="w3l-user">
+					<label class="head">Preferable Route<span class="w3l-star"> * </span></label>
+					<input type="text"  value="<?php echo $result['preferableroute']?>" name="preferableroute" placeholder="" required="">
+				</div>
+			<?php 
+                if(isset($validation['preferableroute'])) { 
+                    echo $validation['preferableroute'];
+                }
+             ?>
 			
 			<div class="clear"></div>
 			</div>	
@@ -98,17 +148,34 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<label class="head">Email<span class="w3l-star"> * </span></label>
 				<input type="email" value="<?php echo $result['email']?>" name="email" placeholder="" required="">
 			</div>
+			<?php 
+                if(isset($validation['email'])) { 
+                    echo $validation['email'];
+                }
+                if (isset($validation['existing-user'])) {
+                    echo $validation['existing-user'];
+                }
+            ?>
 			<div class="clear"></div>
 			
 			<div class="w3l-user">
 				<label class="head">Password<span class="w3l-star"> * </span></label>
 				<input type="password" value="<?php echo $result['password']?>" disabled name="password" placeholder="" required="">
 			</div>
+			<?php 
+                if(isset($validation['password'])) { 
+                    echo $validation['password'];
+                }
+             ?>
 			<div class="w3l-user">
 				<label class="head">Confirm Password<span class="w3l-star"> * </span></label>
 				<input type="password" value="<?php echo $result['confirmpassword']?>" name="confirmpassword" placeholder="" required="">
 			</div>
-				
+				<?php 
+                if(isset($validation['confirmpassword'])) { 
+                    echo $validation['confirmpassword'];
+                }
+             ?>
 				<div class="btn">
 					<input type="submit" name="submit" value="Submit"/>
 				</div>
